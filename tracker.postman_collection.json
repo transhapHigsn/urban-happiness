@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "21f6f44b-db6b-4a02-98ea-d4a9899a9aef",
+		"name": "Tracker Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5000/create_user",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"dummy@email.com\",\n    \"name\": \"dummy\",\n    \"password\": \"mysecret\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/create_user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"create_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/track_balance?user_id=1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "jwt",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTc4MjAwNDAsImlhdCI6MTYxNzgxOTE0MCwic3ViIjoyfQ.rDU-RsuwGbpfE0lgcryREHX3NWBwd4Y1wNaQj7kAhx4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/track_balance",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"track_balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/create_expense",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "jwt",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTc4MjAwNDAsImlhdCI6MTYxNzgxOTE0MCwic3ViIjoyfQ.rDU-RsuwGbpfE0lgcryREHX3NWBwd4Y1wNaQj7kAhx4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"merchant\": {\n        \"name\": \"merchant_A\"\n    },\n    \"paid_by\": 1,\n    \"amount\": 1000,\n    \"parties\": [{\n        \"user_id\": 2,\n        \"amount\": 500\n    }],\n    \"settlements\": []\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/create_expense",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"create_expense"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/get_transactions?user_id=1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/get_transactions?user_id=1&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTc4MjAwNDAsImlhdCI6MTYxNzgxOTE0MCwic3ViIjoyfQ.rDU-RsuwGbpfE0lgcryREHX3NWBwd4Y1wNaQj7kAhx4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"get_transactions"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "1"
+						},
+						{
+							"key": "jwt",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTc4MjAwNDAsImlhdCI6MTYxNzgxOTE0MCwic3ViIjoyfQ.rDU-RsuwGbpfE0lgcryREHX3NWBwd4Y1wNaQj7kAhx4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/register_payback",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "jwt",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTc4MjAwNDAsImlhdCI6MTYxNzgxOTE0MCwic3ViIjoyfQ.rDU-RsuwGbpfE0lgcryREHX3NWBwd4Y1wNaQj7kAhx4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"settlements\": [\n        {\n            \"creditor_id\": 2,\n            \"debitor_id\": 1,\n            \"amount\": 250\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/register_payback",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"register_payback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/token?email=dummy@email.com&password=mysecret",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/token?email=dummy@email.com&password=mysecret",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"token"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "dummy@email.com"
+						},
+						{
+							"key": "password",
+							"value": "mysecret"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
