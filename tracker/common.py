@@ -40,7 +40,7 @@ def decode_auth_token(auth_token):
     :return: dict
     """
     try:
-        payload = jwt.decode(auth_token, JWT_SECRET)
+        payload = jwt.decode(auth_token, JWT_SECRET, algorithms=["HS256"])
         return {"success": True, "data": {"user_id": payload["sub"]}}
     except jwt.ExpiredSignatureError:
         return {"success": False, "message": "Signature expired. Please log in again."}
